@@ -63,7 +63,7 @@ class AddRatingView(generics.CreateAPIView):
 
 class AuthorListView(generics.ListAPIView):
     """Вывод списка авторов"""
-    queryset = Author.objects.all()
+    queryset = Author.objects.all().order_by('name')
     serializer_class = AuthorListSerializer
     # permission_classes = [permissions.IsAuthenticated]
 

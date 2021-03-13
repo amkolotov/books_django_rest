@@ -1,4 +1,5 @@
-books_dj_rest.txt
+!*media/.gitkeep
+media/*
 .idea/
 
 # Environments

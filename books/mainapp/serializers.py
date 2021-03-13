@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Book, Review, Rating, Author
+from .models import Book, Review, Rating, Author, Images
 
 
 class FilterReviewListSerializer(serializers.ListSerializer):
@@ -21,11 +21,14 @@ class AuthorListSerializer(serializers.ModelSerializer):
     """Вывод списка авторов"""
     class Meta:
         model = Author
-        fields = ['id', 'name', 'image']
+        fields = ['id', 'name', 'image', 'desc']
 
 
 class AuthorDetailSerializer(serializers.ModelSerializer):
     """Вывод информации об авторе"""
+    birthday = serializers.DateField(format='%d.%m.%Y')
+    death = serializers.DateField(format='%d.%m.%Y')
+
     class Meta:
         model = Author
         fields = "__all__"
@@ -58,6 +61,13 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'text', 'children']
 
 
+class ImageSerializer(serializers.ModelSerializer):
+    """Вывод изображений"""
+    class Meta:
+        model = Images
+        fields = ['id', 'image']
+
+
 class BookDetailSerializer(serializers.ModelSerializer):
     """Информация о книге"""
     genres = serializers.SlugRelatedField(slug_field='name', read_only=True, many=True)
@@ -66,11 +76,12 @@ class BookDetailSerializer(serializers.ModelSerializer):
     tag = serializers.SlugRelatedField(slug_field='name', read_only=True, many=True)
     reviews = ReviewSerializer(many=True)
     middle_rating = serializers.IntegerField()
+    images = ImageSerializer(many=True)
 
     class Meta:
         model = Book
         fields = ['id', 'genres', 'publisher', 'author', 'tag', 'reviews', 'title', 'tagline', 'desc',
-                  'num_of_pages', 'cover', 'year', 'slug', 'middle_rating']
+                  'num_of_pages', 'cover', 'year', 'slug', 'middle_rating', 'images']
 
 
 class RatingCreateSerializer(serializers.ModelSerializer):

@@ -88,7 +88,7 @@ class Book(models.Model):
 class Images(models.Model):
     """"Изображения"""
     image = models.ImageField('Изображение книги', upload_to='book_images/')
-    book = models.ForeignKey(Book, verbose_name='Книга', on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, verbose_name='Книга', on_delete=models.CASCADE, related_name='images')
 
     def __str__(self):
         return f'Изображение из книги {self.book.title}'

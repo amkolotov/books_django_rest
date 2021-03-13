@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  web:
+    build: ./
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - bdr_postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=django_rest_user
+      - POSTGRES_PASSWORD=django_rest_pass
+      - POSTGRES_DB=django_rest_dev
+volumes:
+  bdr_postgres_data:
