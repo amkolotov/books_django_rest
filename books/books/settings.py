@@ -158,8 +158,8 @@ USE_TZ = True
 # STATIC_DIR = BASE_DIR / 'static'
 # STATICFILES_DIRS = [STATIC_DIR]
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_URL = '/staticfiles/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -171,6 +171,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:80',
     'http://localhost:1337',
     'http://127.0.0.1:1337',
+    'http://5.63.157.5:80',
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
