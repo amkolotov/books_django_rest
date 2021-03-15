@@ -19,13 +19,24 @@ from django.contrib import admin
 from django.urls import path, include
 
 from .yasg import urlpatterns as doc_urls
+#
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('api-auth/', include('rest_framework.urls', namespace='rest')),
+#     path('auth/', include('djoser.urls')),
+#     path('auth/', include('djoser.urls.authtoken')),
+#     path('auth/', include('djoser.urls.jwt')),
+#
+#     path('api/v1/', include('mainapp.urls', namespace='main')),
+# ]
 
+# for deploy docker with vue
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls', namespace='rest')),
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.authtoken')),
-    path('auth/', include('djoser.urls.jwt')),
+    path('api/admin/', admin.site.urls),
+    path('api/api-auth/', include('rest_framework.urls', namespace='rest')),
+    path('api/auth/', include('djoser.urls')),
+    path('api/auth/', include('djoser.urls.authtoken')),
+    path('api/auth/', include('djoser.urls.jwt')),
 
     path('api/v1/', include('mainapp.urls', namespace='main')),
 ]

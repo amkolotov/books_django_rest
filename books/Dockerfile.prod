@@ -18,16 +18,15 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requir
 
 FROM python:3.8.3
 
-RUN mkdir -p /home/amd
+RUN mkdir -p /home/amk
 
 RUN groupadd app
-RUN useradd -m -g app amk -p asd
+RUN useradd -m -g app amk -p PASSWORD
 RUN usermod -aG app amk
 
 ENV HOME=/home/amk
 ENV APP_HOME=/home/amk/web
 RUN mkdir $APP_HOME
-RUN mkdir $APP_HOME/staticfiles
 WORKDIR $APP_HOME
 
 
