@@ -18,14 +18,14 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requir
 
 FROM python:3.8.3
 
-RUN mkdir -p /home/amk
+RUN mkdir -p /home/app
 
 RUN groupadd app
-RUN useradd -m -g app amk -p PASSWORD
-RUN usermod -aG app amk
+RUN useradd -m -g app app -p pass
+RUN usermod -aG app app
 
-ENV HOME=/home/amk
-ENV APP_HOME=/home/amk/web
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
@@ -40,8 +40,8 @@ COPY ./entrypoint.prod.sh $APP_HOME
 
 COPY . $APP_HOME
 
-RUN chown -R amk:app $APP_HOME
+RUN chown -R app:app $APP_HOME
 
-USER amk
+USER app
 
-ENTRYPOINT ["/home/amk/web/entrypoint.prod.sh"]
+ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]

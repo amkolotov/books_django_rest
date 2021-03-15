@@ -7,8 +7,8 @@ services:
       dockerfile: Dockerfile.prod
     command: gunicorn books.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - static_volume:/home/amk/web/static
-      - media_volume:/home/amk/web/media
+      - static_volume:/home/app/web/static
+      - media_volume:/home/app/web/media
     expose:
       - 8000
     env_file:
@@ -32,10 +32,10 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - 1337:80
+      - 80:80
     volumes:
-      - static_volume:/home/amk/web/static
-      - media_volume:/home/amk/web/media
+      - static_volume:/home/app/web/static
+      - media_volume:/home/app/web/media
       - vue_dist:/app/dist
     depends_on:
       - web
